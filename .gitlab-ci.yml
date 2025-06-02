@@ -1,0 +1,28 @@
+image: maven:3.8.4-openjdk-21
+
+services:
+  - postgres:13.9
+
+variables:
+  POSTGRES_DB: pet_management
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
+  POSTGRES_HOST_AUTH_METHOD: trust
+
+before_script:
+  - apt-get update && apt-get install -y postgresql-client
+  - psql -h postgres -U postgres -c "CREATE DATABASE pet_management;"
+
+stages:
+  - build
+  - test
+
+build:
+  stage: build
+  script:
+    - mvn clean package -DskipTests
+
+test:
+  stage: test
+  script:
+    - mvn test 
