@@ -1,0 +1,30 @@
+### Регистрация нового пользователя
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "Oleg Kudrin",
+  "password": "password123",
+  "birthDate": "2005-08-27"
+}
+
+### Аутентификация пользователя
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "Oleg Kudrin",
+  "password": "password123"
+}
+
+### Получение информации о текущем пользователе
+GET {{baseUrl}}/api/auth/me
+Authorization: Bearer {{token}}
+
+### Получение информации о сессии
+GET {{baseUrl}}/api/auth/session
+Authorization: Bearer {{token}}
+
+### Завершение сессии
+POST {{baseUrl}}/api/auth/logout
+Authorization: Bearer {{token}}
